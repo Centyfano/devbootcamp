@@ -7,8 +7,9 @@ on:
   push:
     branches: [ main ]
 env:
-  NODE_ENV: development
-  PORT: 3000
+  NODE_ENV: $NODE_ENV
+  PORT: $PORT
+  MONGO_URI: $MONGO_URI
 jobs:
   build:
 
