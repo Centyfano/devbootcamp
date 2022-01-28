@@ -7,9 +7,9 @@ on:
   push:
     branches: [ main ]
 env:
-  NODE_ENV: $NODE_ENV
-  PORT: $PORT
-  MONGO_URI: $MONGO_URI
+  NODE_ENV: ${{secrets.NODE_ENV}}
+  PORT: ${{secrets.PORT}}
+  MONGO_URI: ${{secrets.MONGO_URI}}
 jobs:
   build:
 
@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
