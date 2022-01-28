@@ -88,8 +88,7 @@ exports.createReview = asyncHandler(async (req, res, next) => {
  * @route /api/v1/reviews/`:id`
  * @param bootcampId Bootcamp ID
  * @method PUT
- * @access Private
- * @protected Only review owner or admin can edit a review
+ * @access Private - Only review owner or admin can edit a review
  */
 exports.updateReview = asyncHandler(async (req, res, next) => {
 	let review = await Review.findById(req.params.id);
@@ -121,8 +120,7 @@ exports.updateReview = asyncHandler(async (req, res, next) => {
  * @route /api/v1/reviews/`:id`
  * @param id Review ID
  * @method DELETE
- * @access Private
- * @protected Only review owner or admin can delete a review
+ * @access Private - Only review owner or admin can delete a review
  */
 exports.deleteReview = asyncHandler(async (req, res, next) => {
 	const review = await Review.findById(req.params.id);

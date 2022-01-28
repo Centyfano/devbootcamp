@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const colors = require("colors");
+
 const fileupload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -78,7 +79,7 @@ app.use("/api/v1/reviews", reviews);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 const server = app.listen(
 	PORT,

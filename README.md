@@ -1,6 +1,6 @@
-# DevCamper API
+# DevBootcamp API
 
-> Backend API for DevCamper application, which is a bootcamp directory website
+> Backend API for managing training bootcamps
 
 > > The API allows for management of bootcamps, courses and reviews, with different user role authorized to access different routes
 

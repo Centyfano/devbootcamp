@@ -56,8 +56,7 @@ exports.getCourse = asyncHandler(async (req, res, next) => {
  * @route /api/v1/bootcamps/`:bootcampId`/courses
  * @param bootcampId Bootcamp ID
  * @method POST
- * @access Private
- * @protected Only course owner or admin can create a course
+ * @access Private - Only course owner or admin can create a course
  */
 exports.createCourse = asyncHandler(async (req, res, next) => {
 	req.body.bootcamp = req.params.bootcampId;
@@ -97,8 +96,7 @@ exports.createCourse = asyncHandler(async (req, res, next) => {
  * @route /api/v1/courses/`:id`
  * @param id Course ID
  * @method PUT
- * @access Private
- * @protected Only course owner or admin can update a course
+ * @access Private - Only course owner or admin can update a course
  */
 exports.updateCourse = asyncHandler(async (req, res, next) => {
 	let course = await Course.findById(req.params.id);
@@ -136,8 +134,7 @@ exports.updateCourse = asyncHandler(async (req, res, next) => {
  * @route /api/v1/courses/`:id`
  * @param id Course ID
  * @method DELETE
- * @access Private
- * @protected Only course owner or admin can delete a course
+ * @access Private - Only course owner or admin can delete a course
  */
 exports.deleteCourse = asyncHandler(async (req, res, next) => {
 	const course = await Course.findById(req.params.id);

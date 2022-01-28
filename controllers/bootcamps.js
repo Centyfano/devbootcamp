@@ -6,8 +6,8 @@ const Bootcamp = require("../models/Bootcamp");
 
 /**
  * Get all bootcamps
- * @route /api/v1/bootcamps
- * @method GET
+ * @name getBootcamps
+ * @path {GET} /api/v1/bootcamps
  * @access Public
  */
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
@@ -16,9 +16,8 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
 
 /**
  * Get single bootcamp by its id
- * @route /api/v1/bootcamps/`:id`
- * @param id The bootcamp ID, as a URL parameter
- * @method GET
+ * @path {GET} /api/v1/bootcamps/`:id`
+ * @param {String} id The bootcamp ID, as a URL parameter
  * @access Public
  */
 exports.getBootcamp = asyncHandler(async (req, res, next) => {
@@ -38,13 +37,12 @@ exports.getBootcamp = asyncHandler(async (req, res, next) => {
 
 /**
  * Create new bootcamp
- * @route /api/v1/bootcamps
- * @method POST
- * @access Private
- * @protected Only bootcamp owner or admin can create a bootcamp
+ * @name createBootcamp
+ * @path {POST} /api/v1/bootcamps
+ * @auth Private - Only bootcamp owner or admin can create a bootcamp
  * @notes If the user is not an admin, they can only add one bootcamp
  */
-exports.createBootcamp = aPublicsyncHandler(async (req, res, next) => {
+exports.createBootcamp = asyncHandler(async (req, res, next) => {
 	/** Add user to req.body */
 	req.body.user = req.user.id;
 
@@ -71,11 +69,10 @@ exports.createBootcamp = aPublicsyncHandler(async (req, res, next) => {
 
 /**
  * Update bootcamp
- * @route /api/v1/bootcamps/`:id`
- * @param id The bootcamp ID, as a URL parameter
- * @method PUT
- * @access Private
- * @protected Only bootcamp owner or admin can update a bootcamp
+ * @name updateBootcamp
+ * @path {PUT} /api/v1/bootcamps/`:id`
+ * @param {String} id The bootcamp ID, as a URL parameter
+ * @auth Private - Only bootcamp owner or admin can update a bootcamp
  */
 exports.updateBootcamp = asyncHandler(async (req, res, next) => {
 	let bootcamp = await Bootcamp.findById(req.params.id);
@@ -109,11 +106,10 @@ exports.updateBootcamp = asyncHandler(async (req, res, next) => {
 
 /**
  * Delete bootcamp
- * @route /api/v1/bootcamps/`:id`
- * @param id The bootcamp ID, as a URL parameter
- * @method DELETE
- * @access Private
- * @protected Only bootcamp owner or admin can delete a bootcamp
+ * @name deleteBootcamp
+ * @path {DELETE} /api/v1/bootcamps/`:id`
+ * @param {String} id The bootcamp ID, as a URL parameter
+ * @access Private - Only bootcamp owner or admin can delete a bootcamp
  */
 exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
 	const bootcamp = await Bootcamp.findById(req.params.id);
@@ -144,10 +140,10 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
 
 /**
  * Get bootcamps within a radius of a given zipcode
- * @route /api/v1/bootcamps/radius/`:zipcode`/`:distance`
- * @param {*} zipcode
- * @param {*} distance distance in km
- * @method GET
+ * @name getBootcamp
+ * @path {GET} /api/v1/bootcamps/radius/`:zipcode`/`:distance`
+ * @param {String} {*} zipcode
+ * @param {Number} {*} distance distance in km
  * @access Public
  */
 exports.getBootcampsInRadius = asyncHandler(async (req, res, next) => {
@@ -178,11 +174,10 @@ exports.getBootcampsInRadius = asyncHandler(async (req, res, next) => {
 
 /**
  * Upload photo for a bootcamp
- * @route /api/v1/bootcamps/`:id`/photo
- * @param {*} id Bootcamp's id
- * @method PUT
- * @access Private
- * @protected Only bootcamp owner or admin can upload photo
+ * @name bootcampPhotoUpload
+ * @path {PUT} /api/v1/bootcamps/`:id`/photo
+ * @param {String} id Bootcamp's id
+ * @access Private - Only bootcamp owner or admin can upload photo
  */
 exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
 	const bootcamp = await Bootcamp.findById(req.params.id);

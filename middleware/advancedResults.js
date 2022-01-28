@@ -2,7 +2,16 @@ const advancedResults = (model, populate) => async (req, res, next) => {
 	let query;
 
 	/** Copy req.query */
-	const reqQuery = { ...req.query };
+	let reqQuery = { ...req.query };
+
+	/** Create nested location.state from `state` key */
+	const n = {};
+	delete Object.assign(n, reqQuery, {
+		["location.state"]: reqQuery["state"],
+	})["state"];
+	if (n["location.state"] === undefined) delete n["location.state"];
+
+	reqQuery = { ...n };
 
 	/** Fields to exclude */
 	const removeFields = ["select", "sort", "page", "limit"];
@@ -18,9 +27,10 @@ const advancedResults = (model, populate) => async (req, res, next) => {
 		/\b(gt|gte|lt|lte|in)\b/g,
 		(match) => `$${match}`,
 	);
+	// console.log(JSON.parse(queryStr));
 
 	/** Finding resource */
-	query = model.find(JSON.parse(queryStr));
+	query = model.find(JSON.parse(queryStr)).populate(populate);
 
 	/** Select Fields */
 	if (req.query.select) {
@@ -49,7 +59,9 @@ const advancedResults = (model, populate) => async (req, res, next) => {
 		query = query.populate(populate);
 	}
 
-	/** Executing query */
+	// console.log("query is", query);
+
+	/** Executing final query */
 	const results = await query;
 
 	/** Pagination result */

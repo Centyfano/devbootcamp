@@ -6,10 +6,9 @@ const User = require("../models/User");
 
 /**
  * Creates a new user
- * @route /api/v1/auth/register
- * @method POST
+ * @name register
+ * @path {POST} /api/v1/auth/register
  * @access Public
- * @returns Promise
  */
 exports.register = asyncHandler(async (req, res, next) => {
 	const { name, email, password, role } = req.body;
@@ -121,6 +120,14 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
  * @access Private - only logged in users can access this route
  */
 exports.updatePassword = asyncHandler(async (req, res, next) => {
+	if (!req.body.currentPassword || !req.body.newPassword)
+		return next(
+			new ErrorResponse(
+				"Please enter currentPassword and newPassword",
+				401,
+			),
+		);
+
 	const user = await User.findById(req.user.id).select("+password");
 
 	/** Check if the entered password matches the current password */

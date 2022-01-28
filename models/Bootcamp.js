@@ -134,12 +134,12 @@ BootcampSchema.pre("save", async function (next) {
 		country: loc[0].countryCode,
 	};
 
-	/** Do not save address in DB */
+	/** Do not save address in the database */
 	this.address = undefined;
 	next();
 });
 
-/** Cascade delete children courses when a bootcamp is deleted */
+/** Cascade delete child courses when a bootcamp is deleted */
 BootcampSchema.pre("remove", async function (next) {
 	console.log(`Courses being removed from bootcamp ${this._id}`);
 	await this.model("Course").deleteMany({ bootcamp: this._id });
