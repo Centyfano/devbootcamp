@@ -10,6 +10,7 @@ env:
   NODE_ENV: ${{secrets.NODE_ENV}}
   PORT: ${{secrets.PORT}}
   MONGO_URI: ${{secrets.MONGO_URI}}
+  GEOCODER_PROVIDER: ${{secrets.GEOCODER_PROVIDER}}
 jobs:
   build:
 
