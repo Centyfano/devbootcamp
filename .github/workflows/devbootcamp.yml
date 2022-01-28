@@ -6,7 +6,9 @@ name: Node.js CI
 on:
   push:
     branches: [ main ]
-
+env:
+  NODE_ENV: development
+  PORT: 3000
 jobs:
   build:
 
