@@ -1,6 +1,6 @@
 const path = require("path");
 const express = require("express");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config(); //{ path: "./config/config.env" };
 const morgan = require("morgan");
 const colors = require("colors");
 
@@ -14,9 +14,6 @@ const hpp = require("hpp");
 const cors = require("cors");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
-
-/** Load env vars */
-dotenv.config({ path: "./config/config.env" });
 
 /** Connect to database */
 connectDB();

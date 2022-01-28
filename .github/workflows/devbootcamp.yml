@@ -4,46 +4,46 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ main ]
+    push:
+        branches: [main]
 env:
-  NODE_ENV: ${{secrets.NODE_ENV}}
-  PORT: ${{secrets.PORT}}
-  MONGO_URI: ${{secrets.MONGO_URI}}
-  
-  GEOCODER_PROVIDER: ${{secrets.GEOCODER_PROVIDER}}
-  GEOCODER_API_KEY: ${{secrets.GEOCODER_API_KEY}}
-  
-  FILE_UPLOAD_PATH: ${{secrets.FILE_UPLOAD_PATH}}
-  MAX_FILE_UPLOAD: ${{secrets.MAX_FILE_UPLOAD}}
-  
-  JWT_SECRET: ${{secrets.JWT_SECRET}}
-  JWT_COOKIE_EXPIRE: ${{secrets.JWT_COOKIE_EXPIRE}}
-  JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
-  
-  SMTP_HOST: ${{secrets.SMTP_HOST}}
-  SMTP_PORT: ${{secrets.SMTP_PORT}}
-  SMTP_EMAIL: ${{secrets.SMTP_EMAIL}}
-  SMTP_PASSWORD: ${{secrets.SMTP_PASSWORD}}
-  FROM_EMAIL: ${{secrets.FROM_EMAIL}}
-  FROM_NAME: ${{secrets.FROM_NAME}}
-  
+    NODE_ENV: ${{secrets.NODE_ENV}}
+    PORT: ${{secrets.PORT}}
+    MONGO_URI: ${{secrets.MONGO_URI}}
+
+    GEOCODER_PROVIDER: ${{secrets.GEOCODER_PROVIDER}}
+    GEOCODER_API_KEY: ${{secrets.GEOCODER_API_KEY}}
+
+    FILE_UPLOAD_PATH: ${{secrets.FILE_UPLOAD_PATH}}
+    MAX_FILE_UPLOAD: ${{secrets.MAX_FILE_UPLOAD}}
+
+    JWT_SECRET: ${{secrets.JWT_SECRET}}
+    JWT_COOKIE_EXPIRE: ${{secrets.JWT_COOKIE_EXPIRE}}
+    JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
+
+    SMTP_HOST: ${{secrets.SMTP_HOST}}
+    SMTP_PORT: ${{secrets.SMTP_PORT}}
+    SMTP_EMAIL: ${{secrets.SMTP_EMAIL}}
+    SMTP_PASSWORD: ${{secrets.SMTP_PASSWORD}}
+    FROM_EMAIL: ${{secrets.FROM_EMAIL}}
+    FROM_NAME: ${{secrets.FROM_NAME}}
+
 jobs:
-  build:
+    build:
+        runs-on: self-hosted
 
-    runs-on: self-hosted
+        strategy:
+            matrix:
+                node-version: [16.x]
+                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm i
-    - run: npm run populate-data
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "npm"
+            - run: npm i
+            - run: npm run populate-data
+            - run: pm2 restart server.js
