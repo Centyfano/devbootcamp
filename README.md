@@ -50,9 +50,9 @@ npm run clear-data
 
 ### API documentation
 
-The API is live at [devcamper.io](https://devcamper.io)
+The API is live at [centy-devbootcamp.netlify.app](https://centy-devbootcamp.netlify.app)
 
-Postman documentation with examples [here](https://documenter.getpostman.com/view/8923145/SVtVVTzd?version=latest)
+Postman documentation with examples [here](https://documenter.getpostman.com/view/11992312/UVeCNSzq)
 
 -   Version: 1.0.0
 -   License: MIT
