@@ -46,24 +46,27 @@ jobs:
                   cache: "npm"
             - run: npm i
             - run: pm2 restart server.js
-              env:
-                  NODE_ENV: ${{secrets.NODE_ENV}}
-                  PORT: ${{secrets.PORT}}
-                  MONGO_URI: ${{secrets.MONGO_URI}}
+            - name: Create env file
+                run: |
+                    cat << EOF > .env
+                    NODE_ENV: ${{secrets.NODE_ENV}}
+                    PORT: ${{secrets.PORT}}
+                    MONGO_URI: ${{secrets.MONGO_URI}}
 
-                  GEOCODER_PROVIDER: ${{secrets.GEOCODER_PROVIDER}}
-                  GEOCODER_API_KEY: ${{secrets.GEOCODER_API_KEY}}
+                    GEOCODER_PROVIDER: ${{secrets.GEOCODER_PROVIDER}}
+                    GEOCODER_API_KEY: ${{secrets.GEOCODER_API_KEY}}
 
-                  FILE_UPLOAD_PATH: ${{secrets.FILE_UPLOAD_PATH}}
-                  MAX_FILE_UPLOAD: ${{secrets.MAX_FILE_UPLOAD}}
+                    FILE_UPLOAD_PATH: ${{secrets.FILE_UPLOAD_PATH}}
+                    MAX_FILE_UPLOAD: ${{secrets.MAX_FILE_UPLOAD}}
 
-                  JWT_SECRET: ${{secrets.JWT_SECRET}}
-                  JWT_COOKIE_EXPIRE: ${{secrets.JWT_COOKIE_EXPIRE}}
-                  JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
+                    JWT_SECRET: ${{secrets.JWT_SECRET}}
+                    JWT_COOKIE_EXPIRE: ${{secrets.JWT_COOKIE_EXPIRE}}
+                    JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
 
-                  SMTP_HOST: ${{secrets.SMTP_HOST}}
-                  SMTP_PORT: ${{secrets.SMTP_PORT}}
-                  SMTP_EMAIL: ${{secrets.SMTP_EMAIL}}
-                  SMTP_PASSWORD: ${{secrets.SMTP_PASSWORD}}
-                  FROM_EMAIL: ${{secrets.FROM_EMAIL}}
-                  FROM_NAME: ${{secrets.FROM_NAME}}
+                    SMTP_HOST: ${{secrets.SMTP_HOST}}
+                    SMTP_PORT: ${{secrets.SMTP_PORT}}
+                    SMTP_EMAIL: ${{secrets.SMTP_EMAIL}}
+                    SMTP_PASSWORD: ${{secrets.SMTP_PASSWORD}}
+                    FROM_EMAIL: ${{secrets.FROM_EMAIL}}
+                    FROM_NAME: ${{secrets.FROM_NAME}}
+                    EOF
