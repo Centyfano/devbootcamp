@@ -2,9 +2,9 @@
 
 > Backend API for managing training bootcamps
 
-> > The API allows for management of bootcamps, courses and reviews, with different user role authorized to access different routes
+-   The API allows for management of bootcamps, courses and reviews, with different user role authorized to access different routes
 
-> > User and account management include signup and login, edit account details, or reset password for forgotten passwords
+-   User and account management include signup and login, edit account details, or reset password for forgotten passwords
 
 ## Usage
 
@@ -50,9 +50,9 @@ npm run clear-data
 
 ### API documentation
 
-The API is live at [centy-devbootcamp.netlify.app](https://centy-devbootcamp.netlify.app)
+The API is live at [devbootcamp.centyfano.dev](https://devbootcamp.centyfano.dev)
 
-Postman documentation with examples [here](https://documenter.getpostman.com/view/11992312/UVeCNSzq)
+Postman API documentation with routes, http methods and requests can be found [here](https://documenter.getpostman.com/view/11992312/UVeCNSzq)
 
 -   Version: 1.0.0
 -   License: MIT
