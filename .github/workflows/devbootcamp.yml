@@ -46,7 +46,7 @@ jobs:
                   cache: "npm"
             - run: npm i
             - run: |
-                  cat << EOF > .env
+                  cat << EOF > config/config.env
                   NODE_ENV=${{secrets.NODE_ENV}}
                   PORT=${{secrets.PORT}}
                   MONGO_URI=${{secrets.MONGO_URI}}
