@@ -1,5 +1,7 @@
-require("dotenv").config({ path: "./config/config.env" }); //;
 const path = require("path");
+require("dotenv").config({
+	path: __dirname + path.join("/config", "/config.env"),
+}); //;
 const express = require("express");
 const morgan = require("morgan");
 const colors = require("colors");
@@ -15,6 +17,7 @@ const cors = require("cors");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 
+console.log(__dirname + path.join("/config", "/config.env"));
 /** Connect to database */
 connectDB();
 
